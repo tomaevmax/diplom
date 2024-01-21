@@ -5,16 +5,14 @@ terraform {
     }
   }
   required_version = ">=0.13"
-
 #  backend "s3" {
-#    endpoint = "https://storage.yandexcloud.net"
+#    endpoint = "storage.yandexcloud.net"
 #    bucket = "k8s-tech"
 #    region = "ru-central1"
-#    key    = "terraform.tfstate
+#    key    = "terraform.tfstate"
 #    skip_region_validation      = true
 #    skip_credentials_validation = true
 #  }
-
 }
 
 provider "yandex" {

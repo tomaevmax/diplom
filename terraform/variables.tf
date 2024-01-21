@@ -17,3 +17,11 @@ variable "folder_id" {
 variable "zone" {
   default = "ru-central1-a"
 }
+
+variable "bucket_admin_access_key" {
+  type        = string
+}
+
+variable "bucket_admin_secret_key" {
+  type        = string
+}
