@@ -34,7 +34,7 @@ resource "yandex_kubernetes_node_group" "k8s_node_group" {
 
   scale_policy {
     fixed_scale {
-      size = 3
+      size = 4
     }
   }
 

@@ -21,4 +21,6 @@ resource "yandex_storage_bucket" "project-bucket" {
     access_key = yandex_iam_service_account_static_access_key.bucket-account-key.access_key
     secret_key = yandex_iam_service_account_static_access_key.bucket-account-key.secret_key
     bucket = "k8s-tech"
+    depends_on = [
+    yandex_iam_service_account.bucket-account,yandex_resourcemanager_folder_iam_member.bucket-account,yandex_iam_service_account_static_access_key.bucket-account-key]
 }
