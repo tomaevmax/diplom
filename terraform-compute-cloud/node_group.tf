@@ -9,6 +9,7 @@ resource "yandex_compute_instance_group" "k8s-node" {
   deletion_protection = false
   instance_template {
     platform_id = "standard-v2"
+    name = "worker-node-{instance.index}"
     resources {
       memory = 2
       cores  = 2
@@ -57,10 +58,6 @@ resource "yandex_compute_instance_group" "k8s-node" {
     max_deleting    = 3
   }
   depends_on = [
-    yandex_resourcemanager_folder_iam_member.k8s-clusters-agent,
-    yandex_resourcemanager_folder_iam_member.vpc-public-admin,
-    yandex_resourcemanager_folder_iam_member.images-puller,
-    yandex_resourcemanager_folder_iam_member.encrypterDecrypter,
     yandex_resourcemanager_folder_iam_member.k8s-editor
   ]
 }
