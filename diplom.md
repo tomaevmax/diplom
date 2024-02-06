@@ -529,7 +529,66 @@ monitoring   grafana-ingress   nginx   grafana.tomaev-maksim.ru   158.160.40.229
 
 ![Снимок экрана 2024-02-05 в 21 45 40](https://github.com/tomaevmax/devops-netology/assets/32243921/b19ab989-c739-4cbe-9818-9007770a5e57)   
 
+Для формирование чартов своего приложения будем использовать [qbec](https://qbec.io/)
+Подготовим [компонет](test-app/components/test-app.jsonnet), который будем фофрмировать сразу три сущности: deployments, services, ingresses.   
+
+Произведем установку:
+````   
+➜  test-app git:(main) ✗ qbec validate default
+setting cluster to cluster.local
+setting context to kubernetes-admin@cluster.local
+cluster metadata load took 213ms
+1 components evaluated in 4ms
+✔ ingresses test-app -n default (source test-app) is valid
+✔ deployments test-app -n default (source test-app) is valid
+✔ services test-app -n default (source test-app) is valid
+---
+stats:
+  valid: 3
+
+command took 360ms
+➜  test-app git:(main) ✗ qbec apply default   
+setting cluster to cluster.local
+setting context to kubernetes-admin@cluster.local
+cluster metadata load took 233ms
+1 components evaluated in 4ms
+
+will synchronize 3 object(s)
+
+Do you want to continue [y/n]: y
+1 components evaluated in 5ms
+create ingresses test-app -n default (source test-app)
+create deployments test-app -n default (source test-app)
+create services test-app -n default (source test-app)
+server objects load took 440ms
+---
+stats:
+  created:
+  - ingresses test-app -n default (source test-app)
+  - deployments test-app -n default (source test-app)
+  - services test-app -n default (source test-app)
+
+waiting for readiness of 1 objects
+  - deployments test-app -n default
+
+  0s    : deployments test-app -n default :: 0 of 1 updated replicas are available
+✓ 1s    : deployments test-app -n default :: successfully rolled out (0 remaining)
+
+✓ 1s: rollout complete
+command took 3.6s
+
+````   
+Проверим доступность приложения по Http   
+````  
+➜  test-app git:(main) ✗ kubectl get ingress
+NAME       CLASS   HOSTS                       ADDRESS          PORTS   AGE
+test-app   nginx   test-app.tomaev-maksim.ru   158.160.56.126   80      82s
+
+````   
+![Снимок экрана 2024-02-06 в 09 50 44](https://github.com/tomaevmax/devops-netology/assets/32243921/656e483d-409b-4e7f-bece-c816d4814975)
+
 </details>    
+
 
 ---
 ### Установка и настройка CI/CD
