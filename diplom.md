@@ -608,6 +608,66 @@ test-app   nginx   test-app.tomaev-maksim.ru   158.160.56.126   80      82s
 2. При любом коммите в репозиторие с тестовым приложением происходит сборка и отправка в регистр Docker образа.
 3. При создании тега (например, v1.0.0) происходит сборка и отправка с соответствующим label в регистри, а также деплой соответствующего Docker образа в кластер Kubernetes.
 
+<details>
+<summary>Решение</summary>
+<br>  
+
+Организовывать ci/cd будем на основе [Gitlab CI](https://docs.gitlab.com/16.8/charts/quickstart/index.html)   
+Установку будем производить с помощью helm.
+Лог установки :   
+
+````  
+➜  diplom git:(main) ✗ helm install gitlab gitlab/gitlab \                                                                          
+  --set global.hosts.domain=tomaev-maksim.ru \
+  --set certmanager-issuer.email=tomaevmax@gmail.com
+NAME: gitlab
+LAST DEPLOYED: Thu Feb  8 08:01:19 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+=== CRITICAL
+The following charts are included for evaluation purposes only. They will not be supported by GitLab Support
+for production workloads. Use Cloud Native Hybrid deployments for production. For more information visit
+https://docs.gitlab.com/charts/installation/index.html#use-the-reference-architectures.
+- PostgreSQL
+- Redis
+- Gitaly
+- MinIO
+
+=== NOTICE
+The minimum required version of PostgreSQL is now 13. See https://gitlab.com/gitlab-org/charts/gitlab/-/blob/master/doc/installation/upgrade.md for more details.
+
+=== NOTICE
+You've installed GitLab Runner without the ability to use 'docker in docker'.
+The GitLab Runner chart (gitlab/gitlab-runner) is deployed without the `privileged` flag by default for security purposes. This can be changed by setting `gitlab-runner.runners.privileged` to `true`. Before doing so, please read the GitLab Runner chart's documentation on why we
+chose not to enable this by default. See https://docs.gitlab.com/runner/install/kubernetes.html#running-docker-in-docker-containers-with-gitlab-runners
+Help us improve the installation experience, let us know how we did with a 1 minute survey:https://gitlab.fra1.qualtrics.com/jfe/form/SV_6kVqZANThUQ1bZb?installation=helm&release=16-8
+
+````   
+Ждем некоторое время до полного разворачивания подов.
+Проверяем в соответствии с инструкцией готовность ингресс.
+
+````   
+➜  diplom git:(main) ✗ kubectl get ingress -lrelease=gitlab
+NAME                        CLASS          HOSTS                       ADDRESS         PORTS     AGE
+gitlab-kas                  gitlab-nginx   kas.tomaev-maksim.ru        158.160.39.35   80, 443   6m9s
+gitlab-minio                gitlab-nginx   minio.tomaev-maksim.ru      158.160.39.35   80, 443   6m9s
+gitlab-registry             gitlab-nginx   registry.tomaev-maksim.ru   158.160.39.35   80, 443   6m9s
+gitlab-webservice-default   gitlab-nginx   gitlab.tomaev-maksim.ru     158.160.39.35   80, 443   6m9s
+
+````   
+Получем токен от root для первичной авторизации для этого воспользуемся командой:
+````
+kubectl get secret gitlab-gitlab-initial-root-password -ojsonpath='{.data.password}' | base64 --decode ; echo   
+
+```` 
+Авторизуемся и импортируем репозитарий нашего тестового приложения с GitHub.   
+
+![Снимок экрана 2024-02-08 в 09 25 35](https://github.com/tomaevmax/devops-netology/assets/32243921/7b123fea-a471-4b25-8355-f3fc813e4a39)
+
+</details>    
+
 ---
 ## Что необходимо для сдачи задания?
 
