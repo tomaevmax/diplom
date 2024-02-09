@@ -705,24 +705,3 @@ kubeadm_patches:
   DOC
    filename = "inventory/k8s-cluster.yml"
 }
-# docker run --rm -it --mount type=bind,source="${HOME}"/.ssh/id_ed25519,dst=/root/.ssh/id_rsa --mount type=bind,source="${PWD}"/inventory/hosts.yaml,dst=/kubespray/inventory/my/hosts.yaml --mount type=bind,source="${PWD}"/inventory/addons.yml,dst=/kubespray/inventory/my/group_vars/k8s_cluster/addons.yml --mount type=bind,source="${PWD}"/inventory/k8s-cluster.yml,dst=/kubespray/inventory/my/group_vars/k8s_cluster/k8s-cluster.yml quay.io/kubespray/kubespray:v2.23.1 bash
-# cp -rnp inventory/sample/* inventory/my
-# ansible-playbook -i inventory/my/hosts.yaml  -u ubuntu --become  cluster.yml
-
-#kubectl config set-cluster yc-diplom --server='https://178.154.201.219:6443' --certificate-authority=cer.crt
-#kubectl config set-credentials kubernetes-admin --client-certificate=ca.crt --client-key=ca.key
-# kubectl config set-context yc-diplom  --current=false --cluster=yc-diplom --user=kubernetes-admin
-# kubectl config use-context yc-diplom
-
-#openssl x509 -noout -text -in /etc/kubernetes/ssl/apiserver.crt
-#sudo rm /etc/kubernetes/pki/apiserver.* -f
-#sudo kubeadm init phase certs apiserver --apiserver-cert-extra-sans 158.160.113.175 --apiserver-cert-extra-sans 10.5.0.19  --apiserver-cert-extra-sans 10.233.0.1 --apiserver-cert-extra-sans localhost --apiserver-cert-extra-sans 127.0.0.1
-# sudo cat /etc/kubernetes/ssl/apiserver.crt
-# sudo cat /etc/kubernetes/ssl/ca.crt
-# sudo cat /etc/kubernetes/ssl/ca.key
-#kubeadm certs check-expiration
-#Для доступа к кластеру извне нужно добавить параметр
-#supplementary_addresses_in_ssl_keys: [158.160.113.175] (адрес снаружи) в файл inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
-
-#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
-#dckr_pat_rlb2FjLtYdIgX9JNZQtYhHdtmMM
