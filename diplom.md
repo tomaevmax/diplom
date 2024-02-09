@@ -118,8 +118,6 @@ secret_key = <sensitive>
 ````   
 ![Снимок экрана 2024-02-05 в 20 49 46](https://github.com/tomaevmax/devops-netology/assets/32243921/81ee338c-653e-4ab9-9b6c-65f44841e045)
 
-</details>
-
 Для подключения backend S3 внесем правки в [provider.tf](/terraform-compute-cloud/providers.tf)
 И проведем инициализацию согласно документации:
 
@@ -156,6 +154,8 @@ If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary. 
 ````   
+
+</details>
 
 ---
 ### Создание Kubernetes кластера
