@@ -557,7 +557,7 @@ monitoring   grafana-ingress   nginx   grafana.tomaev-maksim.ru   158.160.40.229
 ![Снимок экрана 2024-02-05 в 21 45 40](https://github.com/tomaevmax/devops-netology/assets/32243921/b19ab989-c739-4cbe-9818-9007770a5e57)   
 
 Для формирование чартов своего приложения будем использовать [qbec](https://qbec.io/)
-Подготовим [компонет](test-app/components/test-app.jsonnet), который будем фофрмировать сразу три сущности: deployments, services, ingresses.   
+Подготовим [компонет](../test-app/test-app/components/test-app.jsonnet), который будем фофрмировать сразу три сущности: deployments, services, ingresses.   
 
 Произведем установку:
 ````   
