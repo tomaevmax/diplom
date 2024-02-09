@@ -377,19 +377,13 @@ abc76e6033f5: Mounted from library/nginx
 2. Для организации конфигурации использовать [qbec](https://qbec.io/), основанный на [jsonnet](https://jsonnet.org/). Обратите внимание на имеющиеся функции для интеграции helm конфигов и [helm charts](https://helm.sh/)
 3. Если на первом этапе вы не воспользовались [Terraform Cloud](https://app.terraform.io/), то задеплойте и настройте в кластере [atlantis](https://www.runatlantis.io/) для отслеживания изменений инфраструктуры. Альтернативный вариант 3 задания: вместо Terraform Cloud или atlantis настройте на автоматический запуск и применение конфигурации terraform из вашего git-репозитория в выбранной вами CI-CD системе при любом комите в main ветку. Предоставьте скриншоты работы пайплайна из CI/CD системы.
 
-Ожидаемый результат:
-1. Git репозиторий с конфигурационными файлами для настройки Kubernetes.
-2. Http доступ к web интерфейсу grafana.
-3. Дашборды в grafana отображающие состояние Kubernetes кластера.
-4. Http доступ к тестовому приложению.
-
 
 <details>
 <summary>Решение</summary>
 <br>  
 
-Установку кластера prometeus будем производить с помощью пакета [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus)   
-От себя добавим туда конфиг ingress и подправим политику 
+Установку кластера prometeus будем производить с помощью пакета [kube-prometheus](https://github.com/tomaevmax/kube-prometheus)   
+От себя добавим туда конфиг [ingress](https://github.com/tomaevmax/kube-prometheus/blob/main/manifests/grafana-ingress.yaml) и подправим [политику](https://github.com/tomaevmax/kube-prometheus/blob/main/manifests/grafana-networkPolicy.yaml) 
 
 ````   
 ➜  kube-prometheus git:(main) kubectl apply --server-side -f manifests/setup
