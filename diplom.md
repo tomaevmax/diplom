@@ -319,16 +319,12 @@ local-path-storage   local-path-provisioner-6f7b5796d5-tq6jk    1/1     Running 
 2. Альтернативный вариант:  
    а. Используйте любой другой код, главное, чтобы был самостоятельно создан Dockerfile.
 
-Ожидаемый результат:
-
-1. Git репозиторий с тестовым приложением и Dockerfile.
-2. Регистри с собранным docker image. В качестве регистри может быть DockerHub или [Yandex Container Registry](https://cloud.yandex.ru/services/container-registry), созданный также с помощью terraform.
 
 <details>
 <summary>Решение</summary>
 <br>  
 
- Создаем репозитарий на [GitHub](https://github.com/tomaevmax/test-app/tree/main/docker)   
+ Создаем репозитарий на [GitHub](https://github.com/tomaevmax/test-app/tree/main)   
  Собираем и пуши в [DockerHub](https://hub.docker.com/repository/docker/tomaevmax/test-app/general) наше приложение .   
  ````   
 ➜  docker git:(main) ✗ docker build --platform=linux/amd64 -f Dockerfile -t test-app:1.0.0. . 
