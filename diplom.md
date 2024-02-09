@@ -702,6 +702,7 @@ kubectl get secret gitlab-gitlab-initial-root-password -ojsonpath='{.data.passwo
 
 ![Снимок экрана 2024-02-09 в 20 38 34](https://github.com/tomaevmax/diplom/assets/32243921/679334d6-5ddd-4366-b9f9-c946471b54af)
 
+![Снимок экрана 2024-02-09 в 20 39 51](https://github.com/tomaevmax/diplom/assets/32243921/6c7589b3-af99-433f-93b7-246b4dcbd740)
 
 </details>    
 
