@@ -1,0 +1,62 @@
+image:
+  repository: "registry.gitlab.com/gitlab-org/cluster-integration/gitlab-agent/agentk"
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v16.8.0"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+rbac:
+  # Specifies whether RBAC resources should be created
+  create: true
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  # name: ""
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/path: "/metrics"
+  prometheus.io/port: "8080"
+
+config:
+  kasAddress: 'wss://kas.tomaev-maksim.ru'
+  # token: "put your token here"
+  secretName: "gitlab-agent-docs-token"
+  # caCert: "PEM certificate file to use to verify config.kasAddress. Useful if config.kasAddress is self-signed."
+
+extraEnv: []
+# Add additional environment settings to the pod. Can be useful in proxy
+# environments
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+#   memory: 128Mi
+
+nodeSelector:
+  app.kubernetes.io/name: gitlab-agent
+
+tolerations: []
+
+affinity: {}
+
+# Labels to be added to each agent pod
+podLabels: {}
+  # Example:
+# role: developer
+
+# Additional labels to be added to all created objects
+additionalLabels: {}
+
+

@@ -16,9 +16,9 @@ resource "yandex_vpc_subnet" "mysubnet-b" {
   network_id     = yandex_vpc_network.my-k8s-net.id
 }
 
-resource "yandex_vpc_subnet" "mysubnet-c" {
-  name = "mysubnet-c"
+resource "yandex_vpc_subnet" "mysubnet-d" {
+  name = "mysubnet-d"
   v4_cidr_blocks = ["10.7.0.0/16"]
-  zone           = "ru-central1-c"
+  zone           = "ru-central1-d"
   network_id     = yandex_vpc_network.my-k8s-net.id
 }

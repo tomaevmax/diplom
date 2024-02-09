@@ -120,6 +120,43 @@ secret_key = <sensitive>
 
 </details>
 
+Для подключения backend S3 внесем правки в [provider.tf](/terraform-compute-cloud/providers.tf)
+И проведем инициализацию согласно документации:
+
+````   
+➜  terraform-compute-cloud git:(main) ✗ terraform init -backend-config="access_key=YCAJEH2twIBQ59ptKVozJ9pZu" -backend-config="secret_key=YCOZPrEhTXasze6XXBZBGQ5L_5ILw7fPaj3sZYi9"
+
+
+Initializing the backend...
+Do you want to copy existing state to the new backend?
+  Pre-existing state was found while migrating the previous "local" backend to the
+  newly configured "s3" backend. No existing state was found in the newly
+  configured "s3" backend. Do you want to copy this state to the new "s3"
+  backend? Enter "yes" to copy and "no" to start with an empty state.
+
+  Enter a value: yes
+
+
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+
+Initializing provider plugins...
+- Reusing previous version of yandex-cloud/yandex from the dependency lock file
+- Reusing previous version of hashicorp/local from the dependency lock file
+- Using previously-installed yandex-cloud/yandex v0.107.0
+- Using previously-installed hashicorp/local v2.4.1
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary. 
+````   
+
 ---
 ### Создание Kubernetes кластера
 
@@ -667,6 +704,9 @@ kubectl get secret gitlab-gitlab-initial-root-password -ojsonpath='{.data.passwo
 ![Снимок экрана 2024-02-08 в 09 25 35](https://github.com/tomaevmax/devops-netology/assets/32243921/7b123fea-a471-4b25-8355-f3fc813e4a39)
 
 </details>    
+
+Настраиваем  [.gitlab-ci.yml](sss) под согласно заданию. 
+
 
 ---
 ## Что необходимо для сдачи задания?

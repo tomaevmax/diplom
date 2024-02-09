@@ -1,0 +1,259 @@
+[0m[1myandex_iam_service_account.bucket-account: Refreshing state... [id=aje899k49l4ri8fojku7][0m
+[0m[1myandex_vpc_network.my-k8s-net: Refreshing state... [id=enp5ob0gdnqnuq41a4ob][0m
+[0m[1myandex_dns_zone.diplom: Refreshing state... [id=dns39tr9k9127j7d38ak][0m
+[0m[1myandex_iam_service_account.tech-account: Refreshing state... [id=ajep7io5sk5fidb8vvii][0m
+[0m[1myandex_compute_image.ubuntu-test: Refreshing state... [id=fd8vjq5ab5g28bj5bojc][0m
+[0m[1myandex_resourcemanager_folder_iam_member.k8s-editor: Refreshing state... [id=b1gb1aal3vgk7p7nr6nd/editor/serviceAccount:ajep7io5sk5fidb8vvii][0m
+[0m[1myandex_resourcemanager_folder_iam_member.bucket-account: Refreshing state... [id=b1gb1aal3vgk7p7nr6nd/storage.admin/serviceAccount:aje899k49l4ri8fojku7][0m
+[0m[1myandex_iam_service_account_static_access_key.bucket-account-key: Refreshing state... [id=aje8r7pdjjhqi6up1qum][0m
+[0m[1myandex_vpc_subnet.mysubnet-b: Refreshing state... [id=e2l8kesa74sp6dcqgib1][0m
+[0m[1myandex_vpc_subnet.mysubnet-a: Refreshing state... [id=e9b4dh3mco90q2druajv][0m
+[0m[1myandex_vpc_subnet.mysubnet-d: Refreshing state... [id=fl84j1g960uevkr0vq2g][0m
+[0m[1myandex_storage_bucket.project-bucket: Refreshing state... [id=k8s-tech][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # local_file.addons[0m will be created
+[0m  [32m+[0m[0m resource "local_file" "addons" {
+      [32m+[0m[0m content              = (known after apply)
+      [32m+[0m[0m content_base64sha256 = (known after apply)
+      [32m+[0m[0m content_base64sha512 = (known after apply)
+      [32m+[0m[0m content_md5          = (known after apply)
+      [32m+[0m[0m content_sha1         = (known after apply)
+      [32m+[0m[0m content_sha256       = (known after apply)
+      [32m+[0m[0m content_sha512       = (known after apply)
+      [32m+[0m[0m directory_permission = "0777"
+      [32m+[0m[0m file_permission      = "0777"
+      [32m+[0m[0m filename             = "inventory/addons.yml"
+      [32m+[0m[0m id                   = (known after apply)
+    }
+
+[1m  # local_file.k8s-cluster[0m will be created
+[0m  [32m+[0m[0m resource "local_file" "k8s-cluster" {
+      [32m+[0m[0m content              = (known after apply)
+      [32m+[0m[0m content_base64sha256 = (known after apply)
+      [32m+[0m[0m content_base64sha512 = (known after apply)
+      [32m+[0m[0m content_md5          = (known after apply)
+      [32m+[0m[0m content_sha1         = (known after apply)
+      [32m+[0m[0m content_sha256       = (known after apply)
+      [32m+[0m[0m content_sha512       = (known after apply)
+      [32m+[0m[0m directory_permission = "0777"
+      [32m+[0m[0m file_permission      = "0777"
+      [32m+[0m[0m filename             = "inventory/k8s-cluster.yml"
+      [32m+[0m[0m id                   = (known after apply)
+    }
+
+[1m  # local_file.project[0m will be created
+[0m  [32m+[0m[0m resource "local_file" "project" {
+      [32m+[0m[0m content              = (known after apply)
+      [32m+[0m[0m content_base64sha256 = (known after apply)
+      [32m+[0m[0m content_base64sha512 = (known after apply)
+      [32m+[0m[0m content_md5          = (known after apply)
+      [32m+[0m[0m content_sha1         = (known after apply)
+      [32m+[0m[0m content_sha256       = (known after apply)
+      [32m+[0m[0m content_sha512       = (known after apply)
+      [32m+[0m[0m directory_permission = "0777"
+      [32m+[0m[0m file_permission      = "0777"
+      [32m+[0m[0m filename             = "inventory/hosts.yaml"
+      [32m+[0m[0m id                   = (known after apply)
+    }
+
+[1m  # yandex_compute_instance_group.k8s-node[0m will be created
+[0m  [32m+[0m[0m resource "yandex_compute_instance_group" "k8s-node" {
+      [32m+[0m[0m created_at          = (known after apply)
+      [32m+[0m[0m deletion_protection = false
+      [32m+[0m[0m folder_id           = "b1gb1aal3vgk7p7nr6nd"
+      [32m+[0m[0m id                  = (known after apply)
+      [32m+[0m[0m instances           = (known after apply)
+      [32m+[0m[0m name                = "k8s-node"
+      [32m+[0m[0m service_account_id  = "ajep7io5sk5fidb8vvii"
+      [32m+[0m[0m status              = (known after apply)
+
+      [32m+[0m[0m allocation_policy {
+          [32m+[0m[0m zones = [
+              [32m+[0m[0m "ru-central1-a",
+              [32m+[0m[0m "ru-central1-b",
+              [32m+[0m[0m "ru-central1-d",
+            ]
+        }
+
+      [32m+[0m[0m deploy_policy {
+          [32m+[0m[0m max_creating     = 3
+          [32m+[0m[0m max_deleting     = 3
+          [32m+[0m[0m max_expansion    = 3
+          [32m+[0m[0m max_unavailable  = 3
+          [32m+[0m[0m startup_duration = 0
+          [32m+[0m[0m strategy         = (known after apply)
+        }
+
+      [32m+[0m[0m instance_template {
+          [32m+[0m[0m labels      = (known after apply)
+          [32m+[0m[0m metadata    = {
+              [32m+[0m[0m "user-data" = <<-EOT
+                    #cloud-config
+                    users:
+                      - name: ubuntu
+                        groups: sudo
+                        shell: /bin/bash
+                        sudo: ['ALL=(ALL) NOPASSWD:ALL']
+                        ssh-authorized-keys:
+                          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILzsVjG95NO8uNUlNLhJBXzg75lhffQcZpaqRpchSglS tomaevmax@google.com
+                EOT
+            }
+          [32m+[0m[0m name        = "worker-node-{instance.index}"
+          [32m+[0m[0m platform_id = "standard-v2"
+
+          [32m+[0m[0m boot_disk {
+              [32m+[0m[0m device_name = (known after apply)
+              [32m+[0m[0m mode        = "READ_WRITE"
+
+              [32m+[0m[0m initialize_params {
+                  [32m+[0m[0m image_id    = "fd8vjq5ab5g28bj5bojc"
+                  [32m+[0m[0m size        = 60
+                  [32m+[0m[0m snapshot_id = (known after apply)
+                  [32m+[0m[0m type        = "network-hdd"
+                }
+            }
+
+          [32m+[0m[0m network_interface {
+              [32m+[0m[0m ip_address   = (known after apply)
+              [32m+[0m[0m ipv4         = true
+              [32m+[0m[0m ipv6         = (known after apply)
+              [32m+[0m[0m ipv6_address = (known after apply)
+              [32m+[0m[0m nat          = true
+              [32m+[0m[0m network_id   = "enp5ob0gdnqnuq41a4ob"
+              [32m+[0m[0m subnet_ids   = [
+                  [32m+[0m[0m "e2l8kesa74sp6dcqgib1",
+                  [32m+[0m[0m "e9b4dh3mco90q2druajv",
+                  [32m+[0m[0m "fl84j1g960uevkr0vq2g",
+                ]
+            }
+
+          [32m+[0m[0m network_settings {
+              [32m+[0m[0m type = "STANDARD"
+            }
+
+          [32m+[0m[0m resources {
+              [32m+[0m[0m core_fraction = 100
+              [32m+[0m[0m cores         = 4
+              [32m+[0m[0m memory        = 16
+            }
+
+          [32m+[0m[0m scheduling_policy {
+              [32m+[0m[0m preemptible = true
+            }
+        }
+
+      [32m+[0m[0m scale_policy {
+          [32m+[0m[0m fixed_scale {
+              [32m+[0m[0m size = 3
+            }
+        }
+    }
+
+[1m  # yandex_dns_recordset.gitlab[0m will be created
+[0m  [32m+[0m[0m resource "yandex_dns_recordset" "gitlab" {
+      [32m+[0m[0m data    = (known after apply)
+      [32m+[0m[0m id      = (known after apply)
+      [32m+[0m[0m name    = "gitlab.tomaev-maksim.ru."
+      [32m+[0m[0m ttl     = 200
+      [32m+[0m[0m type    = "A"
+      [32m+[0m[0m zone_id = "dns39tr9k9127j7d38ak"
+    }
+
+[1m  # yandex_dns_recordset.grafana[0m will be created
+[0m  [32m+[0m[0m resource "yandex_dns_recordset" "grafana" {
+      [32m+[0m[0m data    = (known after apply)
+      [32m+[0m[0m id      = (known after apply)
+      [32m+[0m[0m name    = "grafana.tomaev-maksim.ru."
+      [32m+[0m[0m ttl     = 200
+      [32m+[0m[0m type    = "A"
+      [32m+[0m[0m zone_id = "dns39tr9k9127j7d38ak"
+    }
+
+[1m  # yandex_dns_recordset.kas[0m will be created
+[0m  [32m+[0m[0m resource "yandex_dns_recordset" "kas" {
+      [32m+[0m[0m data    = (known after apply)
+      [32m+[0m[0m id      = (known after apply)
+      [32m+[0m[0m name    = "kas.tomaev-maksim.ru."
+      [32m+[0m[0m ttl     = 200
+      [32m+[0m[0m type    = "A"
+      [32m+[0m[0m zone_id = "dns39tr9k9127j7d38ak"
+    }
+
+[1m  # yandex_dns_recordset.minio[0m will be created
+[0m  [32m+[0m[0m resource "yandex_dns_recordset" "minio" {
+      [32m+[0m[0m data    = (known after apply)
+      [32m+[0m[0m id      = (known after apply)
+      [32m+[0m[0m name    = "minio.tomaev-maksim.ru."
+      [32m+[0m[0m ttl     = 200
+      [32m+[0m[0m type    = "A"
+      [32m+[0m[0m zone_id = "dns39tr9k9127j7d38ak"
+    }
+
+[1m  # yandex_dns_recordset.registry[0m will be created
+[0m  [32m+[0m[0m resource "yandex_dns_recordset" "registry" {
+      [32m+[0m[0m data    = (known after apply)
+      [32m+[0m[0m id      = (known after apply)
+      [32m+[0m[0m name    = "registry.tomaev-maksim.ru."
+      [32m+[0m[0m ttl     = 200
+      [32m+[0m[0m type    = "A"
+      [32m+[0m[0m zone_id = "dns39tr9k9127j7d38ak"
+    }
+
+[1m  # yandex_dns_recordset.test-app[0m will be created
+[0m  [32m+[0m[0m resource "yandex_dns_recordset" "test-app" {
+      [32m+[0m[0m data    = (known after apply)
+      [32m+[0m[0m id      = (known after apply)
+      [32m+[0m[0m name    = "test-app.tomaev-maksim.ru."
+      [32m+[0m[0m ttl     = 200
+      [32m+[0m[0m type    = "A"
+      [32m+[0m[0m zone_id = "dns39tr9k9127j7d38ak"
+    }
+
+[1mPlan:[0m 10 to add, 0 to change, 0 to destroy.
+[0m
+Changes to Outputs:
+  [32m+[0m[0m external_ip = (known after apply)
+[0m[1myandex_compute_instance_group.k8s-node: Creating...[0m[0m
+[0m[1myandex_compute_instance_group.k8s-node: Still creating... [10s elapsed][0m[0m
+[0m[1myandex_compute_instance_group.k8s-node: Still creating... [20s elapsed][0m[0m
+[0m[1myandex_compute_instance_group.k8s-node: Still creating... [30s elapsed][0m[0m
+[0m[1myandex_compute_instance_group.k8s-node: Still creating... [40s elapsed][0m[0m
+[0m[1myandex_compute_instance_group.k8s-node: Still creating... [50s elapsed][0m[0m
+[0m[1myandex_compute_instance_group.k8s-node: Still creating... [1m0s elapsed][0m[0m
+[0m[1myandex_compute_instance_group.k8s-node: Still creating... [1m10s elapsed][0m[0m
+[0m[1myandex_compute_instance_group.k8s-node: Still creating... [1m20s elapsed][0m[0m
+[0m[1myandex_compute_instance_group.k8s-node: Still creating... [1m30s elapsed][0m[0m
+[0m[1myandex_compute_instance_group.k8s-node: Still creating... [1m40s elapsed][0m[0m
+[0m[1myandex_compute_instance_group.k8s-node: Creation complete after 1m49s [id=cl1eq71t61q4uqudcs0m][0m
+[0m[1myandex_dns_recordset.minio: Creating...[0m[0m
+[0m[1myandex_dns_recordset.test-app: Creating...[0m[0m
+[0m[1myandex_dns_recordset.registry: Creating...[0m[0m
+[0m[1myandex_dns_recordset.grafana: Creating...[0m[0m
+[0m[1myandex_dns_recordset.kas: Creating...[0m[0m
+[0m[1myandex_dns_recordset.gitlab: Creating...[0m[0m
+[0m[1mlocal_file.project: Creating...[0m[0m
+[0m[1mlocal_file.k8s-cluster: Creating...[0m[0m
+[0m[1mlocal_file.addons: Creating...[0m[0m
+[0m[1mlocal_file.k8s-cluster: Creation complete after 0s [id=4c4dd90f2e3f246f677966334d8ea237ed1f2d09][0m
+[0m[1mlocal_file.addons: Creation complete after 0s [id=385c144e7a968496a47b5b971a467b743788f7a1][0m
+[0m[1mlocal_file.project: Creation complete after 0s [id=cf6b65792a288b744ff11709b16e6b69aae4f689][0m
+[0m[1myandex_dns_recordset.registry: Creation complete after 1s [id=dns39tr9k9127j7d38ak/registry.tomaev-maksim.ru./A][0m
+[0m[1myandex_dns_recordset.test-app: Creation complete after 1s [id=dns39tr9k9127j7d38ak/test-app.tomaev-maksim.ru./A][0m
+[0m[1myandex_dns_recordset.gitlab: Creation complete after 1s [id=dns39tr9k9127j7d38ak/gitlab.tomaev-maksim.ru./A][0m
+[0m[1myandex_dns_recordset.grafana: Creation complete after 2s [id=dns39tr9k9127j7d38ak/grafana.tomaev-maksim.ru./A][0m
+[0m[1myandex_dns_recordset.minio: Creation complete after 2s [id=dns39tr9k9127j7d38ak/minio.tomaev-maksim.ru./A][0m
+[0m[1myandex_dns_recordset.kas: Creation complete after 2s [id=dns39tr9k9127j7d38ak/kas.tomaev-maksim.ru./A][0m
+[0m[1m[32m
+Apply complete! Resources: 10 added, 0 changed, 0 destroyed.
+[0m[0m[1m[32m
+Outputs:
+
+[0maccess_key = "YCAJEe-yunCW29uTxCfp_Emna"
+external_ip = "84.201.133.127"
+secret_key = <sensitive>

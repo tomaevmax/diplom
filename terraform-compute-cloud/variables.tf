@@ -17,3 +17,7 @@ variable "folder_id" {
 variable "zone" {
   default = "ru-central1-a"
 }
+
+variable "zone_dns" {
+  type = string
+}

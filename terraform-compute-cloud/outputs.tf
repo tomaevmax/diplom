@@ -8,6 +8,10 @@ output "secret_key" {
 output "external_ip" {
  value = yandex_compute_instance_group.k8s-node.instances[0].network_interface[0].nat_ip_address
 }
-output "internal_ip" {
- value = yandex_compute_instance_group.k8s-node.instances[0].network_interface[0].ip_address
+/*output "certificate_chain" {
+  value = data.yandex_cm_certificate_content.ssl.certificates
 }
+output "certificate_key" {
+  value = data.yandex_cm_certificate_content.ssl.private_key
+  sensitive = true
+}*/

@@ -11,15 +11,15 @@ resource "yandex_compute_instance_group" "k8s-node" {
     platform_id = "standard-v2"
     name = "worker-node-{instance.index}"
     resources {
-      memory = 2
-      cores  = 2
-      core_fraction = 20
+      memory = 8
+      cores  = 4
+      core_fraction = 100
     }
     boot_disk {
       mode = "READ_WRITE"
       initialize_params {
         image_id = "${yandex_compute_image.ubuntu-test.id}"
-        size     = 30
+        size     = 60
       }
     }
 
@@ -30,7 +30,7 @@ resource "yandex_compute_instance_group" "k8s-node" {
     network_interface {
       nat = true
       network_id = "${yandex_vpc_network.my-k8s-net.id}"
-      subnet_ids = ["${yandex_vpc_subnet.mysubnet-a.id}","${yandex_vpc_subnet.mysubnet-b.id}","${yandex_vpc_subnet.mysubnet-c.id}"]
+      subnet_ids = ["${yandex_vpc_subnet.mysubnet-a.id}","${yandex_vpc_subnet.mysubnet-b.id}","${yandex_vpc_subnet.mysubnet-d.id}"]
     }
 
     metadata = {
@@ -48,7 +48,7 @@ resource "yandex_compute_instance_group" "k8s-node" {
   }
 
   allocation_policy {
-    zones = ["ru-central1-a","ru-central1-b","ru-central1-c"]
+    zones = ["ru-central1-a","ru-central1-b","ru-central1-d"]
   }
 
   deploy_policy {
@@ -57,6 +57,7 @@ resource "yandex_compute_instance_group" "k8s-node" {
     max_expansion   = 3
     max_deleting    = 3
   }
+
   depends_on = [
     yandex_resourcemanager_folder_iam_member.k8s-editor
   ]
