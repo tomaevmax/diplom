@@ -693,13 +693,14 @@ kubectl get secret gitlab-gitlab-initial-root-password -ojsonpath='{.data.passwo
 
 ![Снимок экрана 2024-02-08 в 09 25 35](https://github.com/tomaevmax/devops-netology/assets/32243921/7b123fea-a471-4b25-8355-f3fc813e4a39)
 
-</details>    
 
 Настраиваем  [.gitlab-ci.yml](sss) под согласно заданию. 
 
 Далее наборо скринов  по которомы можно составить картину по комммитам и работе pipeline.
 
 ![Снимок экрана 2024-02-09 в 20 36 21](https://github.com/tomaevmax/diplom/assets/32243921/d16c5b10-86e8-43f0-9aaf-6b6c9a259aeb)
+
+![Снимок экрана 2024-02-09 в 20 38 34](https://github.com/tomaevmax/diplom/assets/32243921/679334d6-5ddd-4366-b9f9-c946471b54af)
 
 
 </details>    
